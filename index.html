@@ -42,7 +42,7 @@
             </div>
 
             <div class="hero-img">
-                <div class="img-frame">
+                <div class="img-frame float-anim">
                     <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?auto=format&fit=crop&w=800&q=80" alt="Egyptian Dessert">
                 </div>
             </div>
@@ -50,10 +50,10 @@
 
         <section class="heritage-section" id="heritage">
             <div class="container heritage-container">
-                <div class="heritage-image">
+                <div class="heritage-image fade-in-section">
                     <img src="https://images.unsplash.com/photo-1557142046-c704a3adf8ac?auto=format&fit=crop&w=1200&q=80" alt="Artisan Process">
                 </div>
-                <div class="heritage-text">
+                <div class="heritage-text fade-in-section" style="transition-delay: 0.2s;">
                     <span class="subtitle">OUR HERITAGE</span>
                     <h2>The Artisan Process</h2>
                     <p>Every creation at LABANE is a testament to the rich agricultural legacy of the Nile Valley. We source only the finest dates, pistachios, and raw honey, honoring century-old techniques while embracing modern culinary artistry to deliver an unparalleled sensory experience.</p>
@@ -63,7 +63,7 @@
 
         <section class="review-section" id="reviews">
             <div class="container">
-                <div id="reviewDisplay" class="review-display">
+                <div id="reviewDisplay" class="review-display fade-in-section">
                     <p class="review-text">"An unparalleled sensory journey through Egyptian tradition."</p>
                     <span class="review-author">— Loading Journal</span>
                 </div>
@@ -72,7 +72,7 @@
 
         <section class="menu-section" id="menu">
             <div class="container">
-                <div class="menu-header">
+                <div class="menu-header fade-in-section">
                     <h2>The Collection</h2>
                     <div class="category-tabs">
                         <button class="tab-btn active" data-target="cakeGrid">Cakes</button>
@@ -87,7 +87,7 @@
                     <div id="chocolateGrid" class="menu-grid hidden" data-expanded="false"></div>
                 </div>
 
-                <div class="load-more-wrap">
+                <div class="load-more-wrap fade-in-section">
                     <button id="toggleCollectionBtn" class="hero-btn gold-variant">VIEW FULL COLLECTION</button>
                 </div>
             </div>
@@ -95,7 +95,7 @@
     </main>
 
     <footer class="luxury-footer">
-        <div class="footer-container">
+        <div class="footer-container fade-in-section">
             <div class="footer-column links-column">
                 <h4>Explore</h4>
                 <ul>
@@ -109,7 +109,7 @@
             <div class="footer-column contact-column">
                 <h4>Contact Us</h4>
                 <ul>
-                    <li>Email: labanedessert@gmail.com</li>
+                    <li>Email: <a href="mailto:labanedessert@gmail.com" style="text-decoration: underline;">labanedessert@gmail.com</a></li>
                     <li>Phone: +91 98765 43210</li>
                     <li style="line-height: 1.4; margin-top: 10px;">
                         <a href="https://maps.google.com/?q=Shop+No.02,+Khivansara+Park,+Ulkanagari+Chh.+Sambhajinagar+-431009" target="_blank" style="text-decoration: underline;">
@@ -137,11 +137,10 @@
                 <h3 class="modal-title" id="modalTitle">Product Name</h3>
                 <div class="modal-price" id="modalPrice">₹0</div>
                 <p class="modal-description">A signature creation blending heritage flavors with modern culinary techniques. Handcrafted using premium, locally-sourced ingredients.</p>
-                <div class="modal-ingredients">
+                <div class="modal-ingredients" style="margin-bottom: 0;">
                     <strong>Tasting Notes:</strong> Rich, complex, balanced.<br>
                     <strong>Allergens:</strong> May contain nuts, dairy, and gluten.
                 </div>
-                <button class="modal-btn">INQUIRE TO ORDER</button>
             </div>
         </div>
     </div>
