@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- INTRO OVERLAY ---
     window.addEventListener('load', () => {
         const overlay = document.getElementById('intro-overlay');
         setTimeout(() => {
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2500); 
     });
 
+    // --- NAVBAR ---
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // --- MENU GENERATION ---
     const menuData = {
         cakeGrid: ["Pistachio Basbousa", "Honey Kunafa", "Spiced Date Cake", "Rose Water Sponge", "Om Ali Crumble", "Orange Blossom Loaf", "Egyptian Velvet", "Almond Semolina", "Fig Honey Cake", "Saffron Delight"],
         icecreamGrid: ["Mastic Vanilla", "Dark Cocoa Nile", "Rose Petal", "Mango Alphonso", "Butter Toffee", "Roasted Pistachio", "Hibiscus Sorbet", "Apricot Swirl"],
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     buildMenu();
 
+    // --- REVIEWS ---
     const reviews = [
         { t: "The heritage of Egypt in every delicate morsel.", a: "Vogue Gourmet" },
         { t: "Unparalleled artisan craftsmanship. A true oasis of flavor.", a: "Le Figaro" },
@@ -78,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     }
 
+    // --- MENU TABS ---
     const toggleBtn = document.getElementById('toggleCollectionBtn');
     
     function updateBtnState(targetId) {
         const grid = document.getElementById(targetId);
         const hasHidden = grid.querySelectorAll('.hidden-item').length > 0;
         const isExpanded = grid.dataset.expanded === "true";
-        
         toggleBtn.style.display = (hasHidden || isExpanded) ? "inline-block" : "none";
         toggleBtn.innerText = isExpanded ? "VIEW LESS" : "VIEW FULL COLLECTION";
     }
@@ -124,9 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
             activeGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
-
     updateBtnState('cakeGrid');
 
+    // --- MODAL LOGIC ---
     const modal = document.getElementById('productModal');
     const closeBtn = document.getElementById('closeModalBtn');
     
@@ -134,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('modalImage').src = imgSrc;
         document.getElementById('modalTitle').innerText = name;
         document.getElementById('modalPrice').innerText = `₹${price}`;
-        
         modal.classList.add('active');
         document.body.style.overflow = 'hidden'; 
     };
@@ -144,13 +147,21 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = ''; 
     }
 
-    if(closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-    }
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
+    // --- NEW: SCROLL REVEAL ANIMATIONS ---
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+        observer.observe(section);
     });
 });
