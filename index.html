@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABANE | Luxury Artisan Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <span class="intro-subtitle">EST. 2026</span>
+            <div class="logo-reveal-box">
+                <img src="logo.png" class="intro-logo-img" alt="LABANE Logo">
+                <div class="gold-line"></div>
+            </div>
+            <p class="intro-tagline">Authenticity Reimagined</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <a href="#home" class="logo">
+            <img src="logo.png" alt="LABANE Logo" class="nav-logo-img">
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#heritage">OUR STORY</a></li>
+            <li><a href="#menu">MENU</a></li>
+            <li><a href="#reviews">REVIEWS</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <header class="hero" id="home">
+            <div class="hero-text">
+                <span class="subtitle">THE HERITAGE</span>
+                <h1>Timeless Flavors<br>From the Nile.</h1>
+                <p>A curated selection of authentic Egyptian delicacies, reimagined for the modern connoisseur.</p>
+                <a href="#menu" class="hero-btn">DISCOVER THE MENU</a>
+            </div>
+
+            <div class="hero-img">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?auto=format&fit=crop&w=800&q=80" alt="Egyptian Dessert">
+                </div>
+            </div>
+        </header>
+
+        <section class="heritage-section" id="heritage">
+            <div class="container heritage-container">
+                <div class="heritage-image">
+                    <img src="https://images.unsplash.com/photo-1557142046-c704a3adf8ac?auto=format&fit=crop&w=1200&q=80" alt="Artisan Process">
+                </div>
+                <div class="heritage-text">
+                    <span class="subtitle">OUR HERITAGE</span>
+                    <h2>The Artisan Process</h2>
+                    <p>Every creation at LABANE is a testament to the rich agricultural legacy of the Nile Valley. We source only the finest dates, pistachios, and raw honey, honoring century-old techniques while embracing modern culinary artistry to deliver an unparalleled sensory experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="review-section" id="reviews">
+            <div class="container">
+                <div id="reviewDisplay" class="review-display">
+                    <p class="review-text">"An unparalleled sensory journey through Egyptian tradition."</p>
+                    <span class="review-author">— Loading Journal</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-section" id="menu">
+            <div class="container">
+                <div class="menu-header">
+                    <h2>The Collection</h2>
+                    <div class="category-tabs">
+                        <button class="tab-btn active" data-target="cakeGrid">Cakes</button>
+                        <button class="tab-btn" data-target="icecreamGrid">Ice Cream</button>
+                        <button class="tab-btn" data-target="chocolateGrid">Chocolates</button>
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div id="cakeGrid" class="menu-grid" data-expanded="false"></div>
+                    <div id="icecreamGrid" class="menu-grid hidden" data-expanded="false"></div>
+                    <div id="chocolateGrid" class="menu-grid hidden" data-expanded="false"></div>
+                </div>
+
+                <div class="load-more-wrap">
+                    <button id="toggleCollectionBtn" class="hero-btn gold-variant">VIEW FULL COLLECTION</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="luxury-footer">
+        <div class="footer-container">
+            <div class="footer-column links-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#heritage">Our Story</a></li>
+                    <li><a href="#menu">The Collection</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column contact-column">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>Email: labanedessert@gmail.com</li>
+                    <li>Phone: +91 98765 43210</li>
+                    <li style="line-height: 1.4; margin-top: 10px;">
+                        <a href="https://maps.google.com/?q=Shop+No.02,+Khivansara+Park,+Ulkanagari+Chh.+Sambhajinagar+-431009" target="_blank" style="text-decoration: underline;">
+                            Shop No.02, Khivansara Park,<br>Ulkanagari Chh. Sambhajinagar -431009
+                        </a>
+                    </li>
+                    <li style="margin-top: 20px;">
+                        <a href="https://instagram.com/labanedessert" target="_blank" style="margin-right: 15px; font-weight: 600;">IG: labanedessert</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>LABANE DESSERTS | TRADITION REIMAGINED | © 2026</p>
+        </div>
+    </footer>
+
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="closeModalBtn">×</button>
+            <div class="modal-image-container">
+                <img id="modalImage" src="" alt="Product">
+            </div>
+            <div class="modal-details">
+                <h3 class="modal-title" id="modalTitle">Product Name</h3>
+                <div class="modal-price" id="modalPrice">₹0</div>
+                <p class="modal-description">A signature creation blending heritage flavors with modern culinary techniques. Handcrafted using premium, locally-sourced ingredients.</p>
+                <div class="modal-ingredients">
+                    <strong>Tasting Notes:</strong> Rich, complex, balanced.<br>
+                    <strong>Allergens:</strong> May contain nuts, dairy, and gluten.
+                </div>
+                <button class="modal-btn">INQUIRE TO ORDER</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
