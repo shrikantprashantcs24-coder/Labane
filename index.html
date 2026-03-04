@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LABANE | Luxury Artisan Collection</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1511018556340-d16986a1c194?auto=format&fit=crop&w=800&q=80">
+    
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,6 +33,7 @@
             <li><a href="#heritage">OUR STORY</a></li>
             <li><a href="#menu">MENU</a></li>
             <li><a href="#reviews">REVIEWS</a></li>
+            <li><a href="#visit">VISIT</a></li>
         </ul>
     </nav>
 
@@ -43,15 +48,17 @@
 
             <div class="hero-img">
                 <div class="img-frame float-anim">
-                    <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?auto=format&fit=crop&w=800&q=80" alt="Egyptian Dessert">
+                    <img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?auto=format&fit=crop&w=800&q=80" alt="Egyptian Dessert" class="parallax-img">
                 </div>
             </div>
         </header>
 
+        <div class="section-divider fade-in-section"></div>
+
         <section class="heritage-section" id="heritage">
             <div class="container heritage-container">
                 <div class="heritage-image fade-in-section">
-                    <img src="https://images.unsplash.com/photo-1557142046-c704a3adf8ac?auto=format&fit=crop&w=1200&q=80" alt="Artisan Process">
+                    <img src="https://images.unsplash.com/photo-1557142046-c704a3adf8ac?auto=format&fit=crop&w=1200&q=80" alt="Artisan Process" class="parallax-img" loading="lazy">
                 </div>
                 <div class="heritage-text fade-in-section" style="transition-delay: 0.2s;">
                     <span class="subtitle">OUR HERITAGE</span>
@@ -92,6 +99,34 @@
                 </div>
             </div>
         </section>
+
+        <section class="visit-section" id="visit">
+            <div class="container heritage-container">
+                <div class="heritage-text fade-in-section" style="max-width: 550px;">
+                    <span class="subtitle">EXPERIENCE IN PERSON</span>
+                    <h2>Visit the Boutique</h2>
+                    <p>Step into a world of sensory delight. Experience the aroma of roasted pistachios and orange blossom in our meticulously designed space.</p>
+                    
+                    <div class="visit-details">
+                        <div class="detail-block">
+                            <h4>Hours</h4>
+                            <p>Monday – Sunday<br>11:00 AM – 10:00 PM</p>
+                        </div>
+                        <div class="detail-block">
+                            <h4>Location</h4>
+                            <p>Shop No.02, Khivansara Park,<br>Ulkanagari Chh. Sambhajinagar - 431009</p>
+                        </div>
+                    </div>
+                    
+                    <div class="map-wrapper">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.551670987515!2d75.33089737522501!3d19.85871228151322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba294b40733d3%3A0x600b0e95c1a84f50!2sKhivansara%20Park%2C%20Ulkanagari%2C%20Chhatrapati%20Sambhajinagar%20(Aurangabad)%2C%20Maharashtra%20431005!5e0!3m2!1sen!2sin!4v1709500000000!5m2!1sen!2sin" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="heritage-image fade-in-section" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80" alt="Boutique Interior" class="parallax-img" loading="lazy">
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="luxury-footer">
@@ -102,7 +137,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#heritage">Our Story</a></li>
                     <li><a href="#menu">The Collection</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#visit">Visit Us</a></li>
                 </ul>
             </div>
             
@@ -111,11 +146,6 @@
                 <ul>
                     <li>Email: <a href="mailto:labanedessert@gmail.com" style="text-decoration: underline;">labanedessert@gmail.com</a></li>
                     <li>Phone: +91 98765 43210</li>
-                    <li style="line-height: 1.4; margin-top: 10px;">
-                        <a href="https://maps.google.com/?q=Shop+No.02,+Khivansara+Park,+Ulkanagari+Chh.+Sambhajinagar+-431009" target="_blank" style="text-decoration: underline;">
-                            Shop No.02, Khivansara Park,<br>Ulkanagari Chh. Sambhajinagar -431009
-                        </a>
-                    </li>
                     <li style="margin-top: 20px;">
                         <a href="https://instagram.com/labaneofficial" target="_blank" style="margin-right: 15px; font-weight: 600;">IG: labaneofficial</a>
                     </li>
@@ -144,6 +174,10 @@
             </div>
         </div>
     </div>
+
+    <button id="backToTop" class="back-to-top" aria-label="Scroll back to top">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
 
     <script src="script.js"></script>
 </body>
