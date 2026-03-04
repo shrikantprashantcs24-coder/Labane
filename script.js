@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             overlay.classList.add('intro-hidden');
             document.body.classList.remove('is-loading');
-        }, 2500); 
+        }, 2200); 
     });
 
     // --- NAVBAR ---
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 container.innerHTML += `
                     <article class="card ${isHidden}" onclick="openModal('${name}', ${price}, '${imgSrc}')">
                         <div class="img-wrap">
-                            <img src="${imgSrc}" alt="${name}">
+                            <img src="${imgSrc}" alt="${name}" loading="lazy">
                         </div>
                         <div class="card-content">
                             <h4 style="font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px;">${name}</h4>
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     }
 
-    // --- MENU TABS ---
+    // --- SMOOTH MENU TABS ---
     const toggleBtn = document.getElementById('toggleCollectionBtn');
     
     function updateBtnState(targetId) {
@@ -95,37 +95,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.tab-btn').forEach(tab => {
         tab.addEventListener('click', () => {
+            if(tab.classList.contains('active')) return;
+
             document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             
             const target = tab.dataset.target;
-            document.querySelectorAll('.menu-grid').forEach(grid => {
-                grid.classList.add('hidden');
-                if(grid.id === target) grid.classList.remove('hidden');
-            });
-            updateBtnState(target);
+            const currentGrid = document.querySelector('.menu-grid:not(.hidden)');
+            const newGrid = document.getElementById(target);
+
+            currentGrid.classList.add('fade-out');
+            
+            setTimeout(() => {
+                currentGrid.classList.add('hidden');
+                currentGrid.classList.remove('fade-out');
+                
+                newGrid.classList.remove('hidden');
+                newGrid.classList.add('fade-out'); 
+                
+                void newGrid.offsetWidth; 
+                
+                newGrid.classList.remove('fade-out');
+                updateBtnState(target);
+            }, 300); 
         });
     });
 
+    // --- SMOOTH EXPAND / COLLAPSE ---
     toggleBtn.addEventListener('click', () => {
         const activeGrid = document.querySelector('.menu-grid:not(.hidden)');
         const isExpanded = activeGrid.dataset.expanded === "true";
 
         if (!isExpanded) {
             activeGrid.querySelectorAll('.hidden-item').forEach((item, index) => {
+                item.classList.remove('hiding', 'hidden-item');
                 item.classList.add('revealing');
-                item.style.animationDelay = `${index * 0.15}s`;
+                item.style.animationDelay = `${index * 0.1}s`;
             });
             activeGrid.dataset.expanded = "true";
             toggleBtn.innerText = "VIEW LESS";
         } else {
-            activeGrid.querySelectorAll('.revealing').forEach(item => {
+            const revealingItems = activeGrid.querySelectorAll('.revealing');
+            
+            revealingItems.forEach((item) => {
+                item.style.animationDelay = '0s'; 
                 item.classList.remove('revealing');
-                item.style.animationDelay = "0s";
+                item.classList.add('hiding'); 
             });
-            activeGrid.dataset.expanded = "false";
-            toggleBtn.innerText = "VIEW FULL COLLECTION";
-            activeGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            setTimeout(() => {
+                revealingItems.forEach(item => {
+                    item.classList.add('hidden-item');
+                    item.classList.remove('hiding');
+                });
+                activeGrid.dataset.expanded = "false";
+                toggleBtn.innerText = "VIEW FULL COLLECTION";
+                document.getElementById('menu').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 400); 
         }
     });
     updateBtnState('cakeGrid');
@@ -150,18 +176,58 @@ document.addEventListener("DOMContentLoaded", () => {
     if(closeBtn) closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    // --- NEW: SCROLL REVEAL ANIMATIONS ---
+    // --- SCROLL REVEAL ANIMATIONS ---
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Only animate once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     document.querySelectorAll('.fade-in-section').forEach((section) => {
         observer.observe(section);
+    });
+
+    // --- OPTIMIZED PARALLAX EFFECT ---
+    const parallaxImages = document.querySelectorAll('.parallax-img');
+    
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(() => {
+            const viewportCenter = window.innerHeight / 2;
+            
+            parallaxImages.forEach(img => {
+                const parent = img.parentElement;
+                const rect = parent.getBoundingClientRect();
+                
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const elementCenter = rect.top + (rect.height / 2);
+                    const distance = viewportCenter - elementCenter;
+                    const offset = distance * -0.15;
+                    
+                    img.style.transform = `translateY(${offset}px) scale(1.15)`;
+                }
+            });
+        });
+    });
+
+    // --- NEW: BACK TO TOP BUTTON LOGIC ---
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 });
